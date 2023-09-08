@@ -55,7 +55,7 @@
 
 
     <div class="container mt-5">
-        <form id="myForm">
+        <form id="myForm" method="get">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Email address</label>
                 <input type="email" class="form-control" id="exampleFormControlInput1" name="exampleFormControlInput1" placeholder="name@example.com">
@@ -72,12 +72,12 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlSelect2">Example multiple select</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2" name="exampleFormControlSelect2[]">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select multiple class="form-control" id="exampleFormControlSelect2" name="exampleFormControlSelect2">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </select>
             </div>
             <div class="form-group">

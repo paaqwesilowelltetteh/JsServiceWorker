@@ -8,19 +8,27 @@ form.addEventListener('submit', (event) => {
 
   // Check if all form fields are filled
   if (isFormValid(form)) {
+      // console.log(form)
     // Inside your form submit event listener
 const formData = new FormData(form);
-
     // Get the CSRF token from the meta tag
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    // Convert FormData to a plain object
+    console.log(formData.getAll('exampleFormControlSelect2'));
 
     const formDataObject = {};
-    formData.forEach((value, key) => {
-      formDataObject[key] = value;
+
+    for (const key of formData.keys()){
+        if (! formDataObject[key]){
+            formDataObject[key] = formData.getAll(key);
+        }
+    }
+
+    Object.keys(formDataObject).forEach(key => {
+        if (formDataObject[key].length === 1){
+            formDataObject[key] = formDataObject[key][0];
+        }
     });
-    
 
     const dataToSend = {
       formData: formDataObject, // Pass the plain object representing the FormData
