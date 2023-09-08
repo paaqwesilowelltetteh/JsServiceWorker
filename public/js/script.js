@@ -14,8 +14,6 @@ const formData = new FormData(form);
     // Get the CSRF token from the meta tag
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    console.log(formData.getAll('exampleFormControlSelect2'));
-
     const formDataObject = {};
 
     for (const key of formData.keys()){
