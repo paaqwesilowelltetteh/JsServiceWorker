@@ -3,26 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\FormDataEntry;
 
 class UploadController extends Controller
 {
-    public function uploadChunks(Request $request){
-        // Log the entire request to check what data is being received
-        info('Received request:', ['request' => $request->all()]);
+    public function uploadChunks(Request $request) {
+        $content = $request->getContent();
+        // info('Received request content:', ['content' => $content]);
     
-        // Access specific field names based on the provided data
-        $formData = [
-            'exampleFormControlInput1' => $request->input('exampleFormControlInput1'),
-            'exampleFormControlSelect1' => $request->input('exampleFormControlSelect1'),
-            'exampleFormControlSelect2' => $request->input('exampleFormControlSelect2'),
-            'exampleFormControlTextarea1' => $request->input('exampleFormControlTextarea1'),
-        ];
+        // Parse the JSON data
+        $formData = json_decode($content, true);
     
-        // Log the specific formData to check its content
-        info('Received formData:', ['formData' => $formData]);
+        info($formData);
+        // Create a new FormDataEntry instance and save it
+        // $formDataEntry = new FormDataEntry([
+        //     'field1' => $formData['exampleFormControlInput1'],
+        //     'field2' => $formData['exampleFormControlSelect1'],
+        //     'field3' => $formData['exampleFormControlSelect2'],
+        //     'field3' => $formData['exampleFormControlTextarea1'],
+            
+        // ]);
     
-        // Your further processing logic here
+        // info($formDataEntry);
     
-        return response()->json(['message' => 'Data received successfully']);
+        // Optionally, you can return a response to the client
+        return response()->json(['message' => 'Data received and saved successfully']);
     }
 }
