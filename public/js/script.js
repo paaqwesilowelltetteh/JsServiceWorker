@@ -12,6 +12,9 @@ form.addEventListener('submit', (event) => {
     // Inside your form submit event listener
 const formData = new FormData(form);
     // Get the CSRF token from the meta tag
+    formData.append('contentType','poster_image')
+    formData.append('file',formData.get('poster_images'))
+    formData.delete('poster_images')
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     const formDataObject = {};
@@ -54,7 +57,7 @@ function isFormValid(form) {
 
 // Handle the response from the web worker
 worker.onmessage = function (event) {
-  const responseData = event.data;
+  const responseData = event.data.payload;
   console.log('Response from web worker:', responseData);
   // Handle the response data as needed
   // You can remove the alert and add your own logic here

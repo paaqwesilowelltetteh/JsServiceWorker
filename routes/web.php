@@ -18,4 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/files-upload', [UploadController::class, 'uploadChunks'])->name('files.upload.large');
+Route::get('/uppy', function () {
+    return view('uppy-upload');
+})->name('uppy');
+
+Route::get('/file-upload', function () {
+    return view('file-upload');
+})->name('file-upload');
+
+Route::get('/drap-and-drop', function () {
+    return view('drag-and-drop');
+})->name('drag');
+
+// Route::post('/files-upload', [UploadController::class, 'uploadChunks'])->name('files.upload.large');
+
+
